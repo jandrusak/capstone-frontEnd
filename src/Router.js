@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Users from "./Components/Users";
 import axios from "axios";
+import ProductsC from "./Containers/ProductsC";
 
 // Write checkAuth function here
 // Check the cookies for a cookie called "loggedIn"
@@ -53,6 +54,8 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       {/* add products page protected route */}
+      <Route path="/products" element={<ProductsC />} />
+
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/users" element={<Users />} />
