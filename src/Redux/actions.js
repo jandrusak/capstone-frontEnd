@@ -57,5 +57,14 @@ export const fetchProducts = () => {
 export const SET_CARTS = 'SET_CARTS';
 export const SET_CARTS_BY_USER_ID = 'SET_CARTS_BY_USER_ID';
 export const DELETE_PRODUCT_FROM_CART = 'DELETE_PRODUCT_FROM_CART';
+
+export const addToCart = (productId) => (
+    {
+        type: ADD_PRODUCT_TO_CART,
+        payload: { 
+            // user_id: userId, 
+            product_id: productId 
+        }
+});
 export const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
 

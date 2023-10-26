@@ -39,6 +39,9 @@ const carts = (state = [], action) => {
         case 'DELETE_PRODUCTS_FROM_CART':
             return state.filter(cart => !(cart.user_id ===action.userId && cart.product_id === action.productId));
         case 'ADD_PRODUCT_TO_CART':
+                if (state.some(CartItem => CartItem.product_id === action.payload.product_id)) {
+                    return state
+                } 
                 return [...state, action.payload]
         default:
             return state

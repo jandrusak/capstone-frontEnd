@@ -1,13 +1,15 @@
 import React from "react";
 import Users from "../Users";
 import { useSelector } from "react-redux";
-import { CardContent, CardActions, Divider } from "@mui/material";
+// import { CardContent, CardActions, Divider } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Card } from "@mui/material";
+// import { Card } from "@mui/material";
 import logo from "./pinkLogo.png";
 import "./Home.css";
 import founder from "./founderFar.jpg"
 import stock1 from "./whiteboots.webp"
+import stock2 from "./pursesPhoto.webp"
+
 
 const Home = (props) => {
   return (
@@ -20,24 +22,14 @@ const Home = (props) => {
         </div>
         <div className="logo-container">
           <img src={logo} alt="Pink Logo" className="logo-photo" />
-          <div className="overlay-text">Overlay Text</div>
         </div>
         <div className="right-container">
-        <img src={stock1} alt="display-photo" className="boots-photo" />
-
-    
+        <img src={stock1} alt="display-photo" className="display-photo" />
+        <img src={stock2} alt="display-photo" className="display-photo" />
         </div>
       </div>
       <div className="under-container">
-        <Card className="card">
-          <CardContent className="text-gray">
-            <span>Sample Product Title</span>
-          </CardContent>
-          <Divider />
-          <CardActions>
-            <Link>See More Details - need product id</Link>
-          </CardActions>
-        </Card>
+          <a href="/products">See Products</a>
       </div>
     </div>
   );

@@ -1,21 +1,28 @@
-import React from 'react'
-import { connect } from 'react-redux';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import React from "react";
+import { connect } from "react-redux";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import cookie from 'cookie'
+// import { Link } from '@mui/material';
+import { Link, useNavigate } from "react-router-dom";
+// import Button from '@mui/material/Button';
 
-export function MenuAppBar() {
+export function MenuAppBar(props) {
+  const { userLoggedIn, setUserLoggedIn } = props;
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // const navigate = useNavigate()
+
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -29,11 +36,18 @@ export function MenuAppBar() {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    document.cookie = cookie.serialize('loggedIn', null, {maxAge:0})
+    document.cookie = cookie.serialize("token", null)
+    setUserLoggedIn(false) 
+    // navigate('/')
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor:"#f6359d"}}>
-        <Toolbar>
-          <IconButton
+      <AppBar position="static" sx={{ backgroundColor: "#f6359d" }}>
+        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -42,12 +56,71 @@ export function MenuAppBar() {
           >
             <MenuIcon/>
             
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Products 
-          </Typography>
-          {auth && (
-            <div>
+          </IconButton> */}
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, cursor: "pointer" }}
+              >
+                Home
+              </Typography>
+            </Link>
+            <Link
+              to="/products"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, cursor: "pointer" }}
+              >
+                Products
+              </Typography>
+            </Link>
+            <Link
+              to="/cart"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ flexGrow: 1, cursor: "pointer" }}
+              >
+                Cart
+              </Typography>
+            </Link>
+          </div>
+          <div>
+            {userLoggedIn ? (
+              <Link to= '/' onClick={handleLogout} style={{ textDecoration: "none", color: "inherit" }}>
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{ flexGrow: 1, cursor: "pointer" }}
+                >
+                  Logout
+                </Typography>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{ flexGrow: 1, cursor: "pointer" }}
+                >
+                  Login
+                </Typography>
+              </Link>
+            )}
+          </div>
+
+          {/* {auth && (
+            <div style={{marginLeft: 'auto'}}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -74,11 +147,12 @@ export function MenuAppBar() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>My Cart</MenuItem>
               </Menu>
             </div>
-          )}
-              <FormGroup>
+          )} */}
+
+          {/* <FormGroup>
         <FormControlLabel
           control={
             <Switch
@@ -89,22 +163,19 @@ export function MenuAppBar() {
           }
           label={auth ? 'Logout' : 'Login'}
         />
-      </FormGroup>
+      </FormGroup> */}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
 
-const mapStateToProps = state => {
-    return {
+const mapStateToProps = (state) => {
+  return {};
+};
 
-        }
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
 
-}
-
-const mapDispatchToProps = dispatch => {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar);

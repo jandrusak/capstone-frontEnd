@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import cookie from "cookie"
 
-function Login() {
+function Login(props) {
+    const {setUserLoggedIn} = props
     const [state, setState] = useState({ 
         email: "",
         pwd: "", 
@@ -27,6 +29,8 @@ function Login() {
             console.log(response)
             console.log("i am logged in")
             document.cookie = 'loggedIn=true;max-age=60*10000'
+            document.cookie = cookie.serialize("token", response.data)
+            setUserLoggedIn(true)
             navigate('/')
         }) 
         .catch((error) => {

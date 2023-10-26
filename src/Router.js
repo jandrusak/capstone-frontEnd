@@ -7,6 +7,10 @@ import Register from "./Components/Register";
 import Users from "./Components/Users";
 import axios from "axios";
 import ProductsC from "./Containers/ProductsC";
+import Cart from "./Components/Cart/Cart"
+import Navigation from './Components/Navigation'
+
+
 
 // Write checkAuth function here
 // Check the cookies for a cookie called "loggedIn"
@@ -35,6 +39,18 @@ const ProtectedRoute = (props) => {
 };
 
 const Router = () => {
+  const [userLoggedIn, setUserLoggedIn] = useState(false) 
+  
+  useEffect(() => {
+    const cookies = cookie.parse(document.cookie);
+    if (cookies.loggedIn ==='true'){
+      setUserLoggedIn(true)
+    } else {
+      setUserLoggedIn(false)
+    }
+
+  }, [userLoggedIn, setUserLoggedIn])
+
   // const [users, setUsers] = useState([])
 
   // const getUsers = () => {
@@ -49,17 +65,21 @@ const Router = () => {
   // getUsers()
 
   // },[])
-  // console.log(users)
+  console.log(userLoggedIn)
   return (
+    <>
+    <Navigation userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn}/>
     <Routes>
       <Route path="/" element={<Home />} />
       {/* add products page protected route */}
       <Route path="/products" element={<ProductsC />} />
-
-      <Route path="/login" element={<Login />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn}/>} />
       <Route path="/register" element={<Register />} />
       <Route path="/users" element={<Users />} />
+
     </Routes>
+    </>
   );
 };
 

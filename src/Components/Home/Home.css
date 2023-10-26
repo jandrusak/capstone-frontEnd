@@ -28,6 +28,25 @@
   max-height: 100%;
   max-width: 100%;
   margin: 0;
+  /* background-color: #fff2f5; */
+  background-color:#f6359d ;
+  /* padding-top: 15px; */
+}
+
+.logo-container::after {
+content: "";
+display: block;
+background-color: #f6359d;
+height: 290px;
+width: 100%;
+}
+
+
+
+.under-container{
+  text-align: center;
+  /* background-color:#f6359d ; */
+
 }
 
 .logo-photo {
@@ -35,9 +54,8 @@
   margin: 0;
   padding-top: 0;
   margin-top: 0;
-  border-radius:  5px;
-
-
+  /* box-shadow: 0 0 30px rgba(165, 76, 13, 0.8);  */
+  /* border-radius:  20px; */
 }
 
 .overlay-text {
@@ -65,14 +83,20 @@
     
 }
 
-.boots-photo {
+/* .boots-photo {
   max-width: 100%;
   border-radius:  20px;
-  
+} */
 
-  
-
+.display-photo {
+  max-width: 100%;
+  border-radius:  20px;
 }
+
+.display-photo2 {
+  padding-top: 50px;
+}
+
 
 /* Styles for the left container */
 .left-container {
@@ -92,7 +116,7 @@
 .founder-photo {
   max-width: 100%;
   padding-top: 0px;
-  box-shadow: 0 0 30px rgba(165, 76, 13, 0.8); /* Brown shadow for a Western look */
+  box-shadow: none;
   border-radius:  20px;
   padding-bottom: 0px;
 }
@@ -142,12 +166,28 @@
 
   .logo-container {
     order: 1; 
+    padding-top: 0px;
+    box-shadow: none;
+    border-radius:  0px;
+    background-color:#f6359d ;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0); /* Brown shadow for a Western look */
+
   }
+
+  .logo-container::after {
+    content: "";
+    display: block;
+    background-color: #f6359d;
+    height: 0px;
+    width: 100%;
+    }
 
   .logo-photo {
     width: 100%;
     margin: auto;
     height: auto;
+    box-shadow: none;
+
   }
 
   .left-container {
@@ -182,7 +222,7 @@
     padding-right: 0px;
   }
 
-  .boots-photo {
+  .display-photo {
     max-width: 75%;
     padding-right: 0px;
   }
