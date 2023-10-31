@@ -23,25 +23,9 @@ export const deleteProduct = (index) => {
     }
 }
 
-// export const fetchProducts = () => {
-//     return (dispatch) => {
-//         fetch("http://localhost:3306/Products")
-//         .then(response => response.json())
-//         .then(data => { 
-//             console.log(data)
-//             const action = {
-//                 type: 'FETCH_PRODUCTS', 
-//                 value: data
-//             }
-//             dispatch(action)
-//         })
-//         .catch(error => console.error("API fetch failed", error))
-//     }
-// }
-
 export const fetchProducts = () => {
     return async (dispatch) => {
-        const response = await fetch("http://localhost:3306/Products")
+        const response = await fetch("https://sourcingmagic-backend.onrender.com/Products")
         const data = await response.json()
         dispatch({
             type: 'FETCH_PRODUCTS', 
@@ -50,6 +34,16 @@ export const fetchProducts = () => {
     }
 }
 
+export const fetchProductById = (productId) => {
+    return async (dispatch) => {
+        const response = await fetch(`https://sourcingmagic-backend.onrender.com/Products/${productId}`)
+        const data = await response.json();
+        dispatch({
+            type: 'SET_PRODUCT_BY_ID',
+            payload: data
+        });
+    }
+}
 
 
 

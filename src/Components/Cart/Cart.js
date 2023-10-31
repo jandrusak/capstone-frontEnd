@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./Cart.css";
-import CartItems from "../CartItems/CartItems";
 import cookie from "cookie";
 import axios from "axios";
 
@@ -12,7 +11,7 @@ function Cart() {
 
   const fetchCart = () => {
     axios
-      .get("http://localhost:3306/Cart", {
+      .get("https://sourcingmagic-backend.onrender.com/Cart", {
         headers: {
           Authorization: `Bearer ${cookies.token}`,
         },
@@ -27,7 +26,7 @@ function Cart() {
     let data = [];
     for (let item of cartItems) {
       axios
-        .get(`http://localhost:3306/Products/${item.product_id}`)
+        .get(`https://sourcingmagic-backend.onrender.com/Products/${item.product_id}`)
         .then((response) => {
           console.log(response.data);
           data = [...data, response.data];
@@ -52,13 +51,30 @@ function Cart() {
   console.log(cartItems);
 
   const cartTotal = () => {
-    let results = 0
+    let results = 0;
     for (let item of itemDetails) {
-      results += item.price
+      results += item.price;
     }
-    return results.toFixed(2)
+    return results.toFixed(2);
+  };
 
-  } 
+  const handleDelete = (product_id) => {
+    console.log(product_id);
+    axios
+      .delete(
+        `https://sourcingmagic-backend.onrender.com/Cart/${product_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log("message here");
+        console.log(res);
+        setCartItems(cartItems.filter((item)=> item.product_id !== product_id) )
+      });
+  };
 
   return (
     <div className="cart-container">
@@ -66,6 +82,9 @@ function Cart() {
       {itemDetails.map((item) => (
         <div className="cart-item" key={item.product_id}>
           <div className="cart-details">
+            <button onClick={() => handleDelete(item?.product_id)}>
+              Delete
+            </button>
             <img src={item?.image_url} alt={item?.product_title} />
             <p>{item?.product_title}</p>
           </div>

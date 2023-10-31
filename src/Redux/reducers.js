@@ -29,8 +29,21 @@ const products = (state = [], action) => {
             return action.value
          default:
             return state
+        case 'SET_PRODUCT_BY_ID':
+            const productIndex = state.findIndex(prod => prod.product_id === action.payload.product_id);
+            if (productIndex >= 0) {
+                const newState = [...state];
+                newState[productIndex] = action.payload;
+                return newState
+            } else {
+                return [...state, action.payload];
+            }
     }
 }
+
+
+
+
 
 const carts = (state = [], action) => {
     switch(action.type) {

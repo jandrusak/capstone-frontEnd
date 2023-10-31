@@ -9,6 +9,7 @@ import axios from "axios";
 import ProductsC from "./Containers/ProductsC";
 import Cart from "./Components/Cart/Cart"
 import Navigation from './Components/Navigation'
+import ProductDetails from "./Components/Products/ProductDetails";
 
 
 
@@ -51,20 +52,6 @@ const Router = () => {
 
   }, [userLoggedIn, setUserLoggedIn])
 
-  // const [users, setUsers] = useState([])
-
-  // const getUsers = () => {
-  //     axios.get('http://localhost:3306/users')
-  //     .then((response)=>{
-  //         // console.log(response.data)
-  //         setUsers(response.data)
-  //     })
-  // }
-
-  // useEffect(()=> {
-  // getUsers()
-
-  // },[])
   console.log(userLoggedIn)
   return (
     <>
@@ -77,7 +64,7 @@ const Router = () => {
       <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn}/>} />
       <Route path="/register" element={<Register />} />
       <Route path="/users" element={<Users />} />
-
+      <Route path="/products/:productId" element={<ProductDetails />} />
     </Routes>
     </>
   );
