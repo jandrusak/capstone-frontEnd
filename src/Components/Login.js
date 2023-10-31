@@ -36,7 +36,11 @@ function Login(props) {
             navigate('/')
         }) 
         .catch((error) => {
-            console.log(error)
+          if (error.response && error.response.status === 401) {
+            window.alert('Incorrect email or password.')
+          } else {
+            window.alert('Login error. Please try again.')
+          }            
         }) 
     }
 

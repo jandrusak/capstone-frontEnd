@@ -49,8 +49,10 @@ const Products = (props) => {
                       {product.product_title}
                       </Link>
                       </h5>
+                    <div className="add-button">
                     <img src={product.image_url} alt={product.product_title} className="product-image"/>
                     <button onClick={()=> handleAddToCart(product.product_id)}>Add to Cart</button>
+                    </div>
                 </div>
             ))
         }          

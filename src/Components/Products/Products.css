@@ -6,6 +6,16 @@
     margin: 0 auto;
 }
 
+
+.add-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+
+
 .product-image {
     width: 100%;
     max-width: 300px;
