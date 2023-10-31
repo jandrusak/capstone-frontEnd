@@ -82,10 +82,12 @@ function Cart() {
       {itemDetails.map((item) => (
         <div className="cart-item" key={item.product_id}>
           <div className="cart-details">
-            <button onClick={() => handleDelete(item?.product_id)}>
+            <div className="cart-delete">
+            <img src={item?.image_url} alt={item?.product_title} />
+            <button className="button" onClick={() => handleDelete(item?.product_id)}>
               Delete
             </button>
-            <img src={item?.image_url} alt={item?.product_title} />
+            </div>
             <p>{item?.product_title}</p>
           </div>
           <p>${item?.price.toFixed(2)}</p>

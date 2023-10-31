@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { TextField, Button, Container } from "@mui/material";
+import "./Form.css"
+import { useNavigate, Link} from 'react-router-dom';
 
 function Register() {
     const [state, setState] = useState({ 
@@ -9,6 +12,8 @@ function Register() {
         last_name: "",
         phone: "",
     })
+
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const newUserState = {...state}
@@ -29,6 +34,7 @@ function Register() {
         .then((response) => {
             console.log(response)
             console.log("i am registered")
+            navigate("/login")
         }) 
         .catch((error) => {
             console.log(error)
@@ -37,14 +43,59 @@ function Register() {
 
   return (
     <div>
-        <form onSubmit={handleSubmit}> 
-            <input placeholder='email'value={state.email} name='email' onChange={handleChange} />
-            <input placeholder='pwd'value={state.pwd} name='pwd' onChange={handleChange} />
-            <input placeholder='first_name'value={state.first_name} name='first_name' onChange={handleChange} />
-            <input placeholder='last_name'value={state.last_name} name='last_name' onChange={handleChange} />
-            <input placeholder='phone'value={state.phone} name='phone' onChange={handleChange} />
-            <button type='submit'>Push</button>
+        <Container maxWidth="sm">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <TextField
+            required
+            onChange={handleChange}
+            value={state.email}
+            name="email"
+            label="Email"
+            type="text"
+          />
+          <TextField
+            required
+            onChange={handleChange}
+            value={state.pwd}
+            name="pwd"
+            label="Password"
+            type="password"
+          />
+           <TextField
+            required
+            onChange={handleChange}
+            value={state.first_name}
+            name="first_name"
+            label="First Name"
+            type="text"
+          />
+           <TextField
+          required
+          onChange={handleChange}
+          value={state.last_name}
+          name="last_name"
+          label="Last Name"
+          type="text"
+        /> 
+        <TextField
+        required
+        onChange={handleChange}
+        value={state.phone}
+        name="phone"
+        label="Phone"
+        type="phone"
+      />
+          <Button sx={{ backgroundColor: "#f6359d" }}
+            type="submit"
+            className="login-button"
+            variant="contained"
+            color="primary"
+          >
+            Register
+          </Button>
+          <p>Already Registered? <Link to="/login">Login</Link></p>
         </form>
+      </Container>
     </div>
   )
 }

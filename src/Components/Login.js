@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import cookie from "cookie"
+import { TextField, Button, Container } from "@mui/material";
+
 
 function Login(props) {
     const {setUserLoggedIn} = props
@@ -40,11 +42,36 @@ function Login(props) {
 
   return (
     <div>
-        <form onSubmit={handleSubmit}> 
-            <input placeholder='email'value={state.email} name='email' onChange={handleChange} />
-            <input placeholder='pwd'value={state.pwd} name='pwd' onChange={handleChange} />
-            <button type='submit'>Push</button>
+        <Container maxWidth="sm">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <TextField
+            required
+            onChange={handleChange}
+            value={state.email}
+            name="email"
+            label="Email"
+            type="text"
+          />
+          <TextField
+            required
+            onChange={handleChange}
+            value={state.pwd}
+            name="pwd"
+            label="Password"
+            type="password"
+          />
+          <Button sx={{ backgroundColor: "#f6359d" }}
+            type="submit"
+            className="login-button"
+            variant="contained"
+            color="primary"
+          >
+            Login
+          </Button>
+          <p>Don't Have an Account? <Link to="/register">Register Here</Link></p>
+
         </form>
+      </Container>
     </div>
   )
 }
