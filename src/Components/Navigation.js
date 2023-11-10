@@ -23,6 +23,14 @@ export function MenuAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   // const navigate = useNavigate()
 
+  const linkStyle = {
+    textDecoration: "none", 
+    color: "inherit", 
+    flexGrow: 1, 
+    cursor: "pointer", 
+    fontWeight: 'bold', 
+    fontSize: '1rem'
+  }
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -46,23 +54,14 @@ export function MenuAppBar(props) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#f6359d" }}>
-        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon/>
-            
-          </IconButton> */}
+        <Toolbar style={{ display: "flex", minHeight: '56px', padding: '0 8px', justifyContent: "space-between" }}>
+        {/* <Toolbar sx={{ }}> */}
           <div style={{ display: "flex", gap: "1rem" }}>
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ flexGrow: 1, cursor: "pointer" }}
+                sx={{ ...linkStyle}}
               >
                 Home
               </Typography>
@@ -74,7 +73,7 @@ export function MenuAppBar(props) {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ flexGrow: 1, cursor: "pointer" }}
+                sx={{ ...linkStyle}}
               >
                 Products
               </Typography>
@@ -86,7 +85,7 @@ export function MenuAppBar(props) {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ flexGrow: 1, cursor: "pointer" }}
+                sx={{ ...linkStyle }}
               >
                 Cart
               </Typography>
@@ -98,7 +97,7 @@ export function MenuAppBar(props) {
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 1, cursor: "pointer" }}
+                  sx={{ ...linkStyle }}
                 >
                   Logout
                 </Typography>
