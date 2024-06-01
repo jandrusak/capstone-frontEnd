@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 
+
+
 const users = (state = [], action) => {
     switch(action.type) {
         case 'SET_USERS':
@@ -38,6 +40,7 @@ const products = (state = [], action) => {
             } else {
                 return [...state, action.payload];
             }
+   
     }
 }
 

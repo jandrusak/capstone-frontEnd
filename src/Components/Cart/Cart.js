@@ -100,7 +100,7 @@ function Cart() {
         </div>
       ))}
       <h4>Total ${cartTotal()}</h4>
-      {/* <p>Checkout (unavailable at this time)</p> */}
+      <p>Checkout</p>
       <a
         href={checkoutUrl}
         target="_blank"

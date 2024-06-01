@@ -10,6 +10,8 @@ import ProductsC from "./Containers/ProductsC";
 import Cart from "./Components/Cart/Cart"
 import Navigation from './Components/Navigation'
 import ProductDetails from "./Components/Products/ProductDetails";
+import PayPalPayment from './Components/PayPalPayment';
+
 
 
 
@@ -65,6 +67,7 @@ const Router = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/users" element={<Users />} />
       <Route path="/products/:productId" element={<ProductDetails />} />
+      <Route path="/payment" element={<ProtectedRoute component={PayPalPayment} />} />
     </Routes>
     </>
   );
