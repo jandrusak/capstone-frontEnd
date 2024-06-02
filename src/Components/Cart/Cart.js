@@ -25,15 +25,27 @@ function Cart() {
   // };
 
   const fetchCart = () => {
-    axios
-      .get("https://sourcingmagic-backend.onrender.com/Cart")
-      .then((res) => {
-        setCartItems(res.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching cart items", error);
-      });
+  //   axios
+  //     .get("https://sourcingmagic-backend.onrender.com/Cart")
+  //     .then((res) => {
+  //       setCartItems(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching cart items", error);
+  //     });
+  // };
+  axios.get("https://sourcingmagic-backend.onrender.com/Cart", {
+    params: { userId: cookies.userId }
+})
+.then((res) => {
+    setCartItems(res.data);
+})
+.catch((error) => {
+    console.error("Error fetching cart items", error);
+});
   };
+
+
 
   const fetchDetails = () => {
     let data = [];
