@@ -11,41 +11,18 @@ function Cart() {
 
   const checkoutUrl = "https://stripe.com/";
 
-  // const fetchCart = () => {
-  //   axios
-  //     .get("https://sourcingmagic-backend.onrender.com/Cart", {
-  //       headers: {
-  //         Authorization: `Bearer ${cookies.token}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       // console.log(res.data)
-  //       setCartItems(res.data);
-  //     });
-  // };
-
   const fetchCart = () => {
-  //   axios
-  //     .get("https://sourcingmagic-backend.onrender.com/Cart")
-  //     .then((res) => {
-  //       setCartItems(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching cart items", error);
-  //     });
-  // };
-  axios.get("https://sourcingmagic-backend.onrender.com/Cart", {
-    params: { userId: cookies.userId }
-})
-.then((res) => {
-    setCartItems(res.data);
-})
-.catch((error) => {
-    console.error("Error fetching cart items", error);
-});
+    axios
+      .get("https://sourcingmagic-backend.onrender.com/Cart", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      })
+      .then((res) => {
+        // console.log(res.data)
+        setCartItems(res.data);
+      });
   };
-
-
 
   const fetchDetails = () => {
     let data = [];
