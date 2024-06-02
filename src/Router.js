@@ -61,7 +61,7 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       {/* add products page protected route */}
-      <Route path="/products" element={<ProtectedRoute component={ProductsC} />} />
+      <Route path="/products" element={<ProductsC/>} />
       <Route path="/cart" element={<ProtectedRoute component={Cart} />} />
       <Route path="/login" element={<Login setUserLoggedIn={setUserLoggedIn}/>} />
       <Route path="/register" element={<Register />} />
